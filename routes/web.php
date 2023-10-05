@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\DashboardController;
 
 
@@ -34,5 +35,8 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
    Route::get('/edit-post/{post}', [PostController::class, 'edit'])->name('edit-post');
    Route::put('/update-post/{post}', [PostController::class, 'update'])->name('update-post');
    Route::delete('/delete-post/{post}', [PostController::class, 'destroy'])->name('delete-post');
+
+   Route::get('/settings',[SettingsController::class,'index']);
+   Route::post('/settings',[SettingsController::class,'savedata']);
    
 }); 
