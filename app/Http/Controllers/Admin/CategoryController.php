@@ -25,31 +25,31 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validationRules = $this->getValidationRules();
+    {
+        $validationRules = $this->getValidationRules();
 
-    $this->validate($request, $validationRules);
+        $this->validate($request, $validationRules);
 
-    $categoryData = $request->only([
-        'name', 'description', 'meta_title', 'meta_description', 'meta_keywords',
-    ]);
+        $categoryData = $request->only([
+            'name', 'description', 'meta_title', 'meta_description', 'meta_keywords',
+        ]);
 
-    // Check if 'navbar_status' checkbox is checked and set the value accordingly
-    $categoryData['navbar_status'] = $request->has('navbar_status') ? 1 : 0;
+        // Check if 'navbar_status' checkbox is checked and set the value accordingly
+        $categoryData['navbar_status'] = $request->has('navbar_status') ? 1 : 0;
 
-    $categoryData['status'] = $request->has('status') ? 1 : 0;
-    $categoryData['slug'] = Str::slug($request->input('slug'));
-    // Use the handleFileUpload method to get the image path
-    $imagePath = $this->handleFileUpload($request);
+        $categoryData['status'] = $request->has('status') ? 1 : 0;
+        $categoryData['slug'] = Str::slug($request->input('slug'));
+        // Use the handleFileUpload method to get the image path
+        $imagePath = $this->handleFileUpload($request);
 
-    if ($imagePath !== null) {
-        $categoryData['image'] = $imagePath;
+        if ($imagePath !== null) {
+            $categoryData['image'] = $imagePath;
+        }
+
+        Category::create($categoryData);
+
+        return redirect('admin/add-category')->with('success', 'Category Added Successfully');
     }
-
-    Category::create($categoryData);
-
-    return redirect('admin/add-category')->with('success', 'Category Added Successfully');
-}
 
 
 

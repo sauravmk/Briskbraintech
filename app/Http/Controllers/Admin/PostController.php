@@ -87,7 +87,6 @@ class PostController extends Controller
         if ($imagePath !== null) {
             $updatedPostData['image'] = $imagePath;
         }
-
         if ($post->exists) {
             $post->update($updatedPostData);
         } else {
