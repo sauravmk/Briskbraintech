@@ -20,15 +20,16 @@
                         <a class="nav-link {{Request::is('admin/category') || Request::is('admin/edit-category/*')? 'active':''}}" href="{{url('admin/category')}}">View Category</a>
                     </nav>
                 </div>
-                <a class="nav-link {{Request::is('admin/posts') || Request::is('admin/post/*')|| Request::is('admin/add-post') ? 'collapse active':'collapsed'}}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePost" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link {{ Request::is('admin/posts') || Request::is('admin/post/*') || Request::is('admin/add-post') || Request::is('admin/page-metadata') || Request::is('admin/page-metadata/*') ? 'collapse active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePost" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Posts
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse {{Request::is('admin/add-post') || Request::is('admin/post/*')|| Request::is('admin/posts')? 'show':''}}" id="collapsePost" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse {{ Request::is('admin/add-post') || Request::is('admin/post/*') || Request::is('admin/posts') || Request::is('admin/page-metadata') || Request::is('admin/page-metadata/*') ? 'show' : '' }}" id="collapsePost" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link {{Request::is('admin/add-post')? 'active':''}}" href="{{url('admin/add-post')}}">Add Post</a>
-                        <a class="nav-link {{Request::is('admin/posts')||Request::is('admin/post/*')? 'active':''}}" href="{{url('admin/posts')}}">View Posts</a>
+                        <a class="nav-link {{ Request::is('admin/add-post') ? 'active' : '' }}" href="{{ url('admin/add-post') }}">Add Post</a>
+                        <a class="nav-link {{ Request::is('admin/posts') || Request::is('admin/post/*') ? 'active' : '' }}" href="{{ url('admin/posts') }}">View Posts</a>
+                        <a class="nav-link {{ Request::is('admin/page-metadata') || Request::is('admin/page-metadata/*') ? 'active' : '' }}" href="{{ url('admin/page-metadata') }}">Page Metadata</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Addons</div>

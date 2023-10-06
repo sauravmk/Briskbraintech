@@ -13,7 +13,7 @@ class SettingsController extends Controller
         $setting = Settings::find(1);
         return view('admin.setting.index', compact('setting'));
     }
-    
+
     private function getValidationRules()
     {
         return [
@@ -76,6 +76,7 @@ class SettingsController extends Controller
         $logoPath = $this->handleFileUpload($request, 'logo');
         $faviconPath = $this->handleFileUpload($request, 'favicon');
 
+
         if ($logoPath !== null) {
             $settingsData['logo'] = $logoPath;
         }
@@ -84,8 +85,9 @@ class SettingsController extends Controller
             $settingsData['favicon'] = $faviconPath;
         }
 
+
         // Create or update the settings record in the database
-        $setting = Settings::first(); // Assuming you want to update the first existing record
+        $setting = Settings::first(); 
 
         if ($setting) {
             $setting->update($settingsData);
@@ -98,13 +100,13 @@ class SettingsController extends Controller
     }
 
 
-    private function handleFileUpload($request)
+    private function handleFileUpload($request, $fieldName)
     {
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/logo');
-            $image->move($destinationPath, $name);
+        if ($request->hasFile($fieldName)) {
+            $file = $request->file($fieldName);
+            $name = time() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('/images/logo'); // Modify the destination path as needed
+            $file->move($destinationPath, $name);
             return '/images/logo/' . $name;
         }
         return null;

@@ -6,17 +6,30 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Admin\PageMetadataController;
 
 
-
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about',[App\Http\Controllers\HomeController::class,'about'])->name('about');
+Route::get('/contact',[App\Http\Controllers\HomeController::class,'contact'])->name('contact');
+Route::get('/portfolio',[App\Http\Controllers\HomeController::class,'portfolio'])->name('portfolio');
+Route::get('/service',[App\Http\Controllers\HomeController::class,'service'])->name('service');
+Route::get('/Yii',[App\Http\Controllers\HomeController::class,'Yii'])->name('Yii');
+Route::get('/Codeigniter',[App\Http\Controllers\HomeController::class,'Codeigniter'])->name('Codeigniter');
+Route::get('/Laravel',[App\Http\Controllers\HomeController::class,'Laravel'])->name('Laravel');
+Route::get('/Magento',[App\Http\Controllers\HomeController::class,'Magento'])->name('Magento');
+Route::get('/WordPress',[App\Http\Controllers\HomeController::class,'WordPress'])->name('WordPress');
+Route::get('/PHP',[App\Http\Controllers\HomeController::class,'PHP'])->name('PHP');
+Route::get('/Ruby',[App\Http\Controllers\HomeController::class,'Ruby'])->name('Ruby');
+
+Route::get('/',[FrontendController::class,'index']);
+Route::get('/home', [FrontendController::class, 'index'])->name('home');
+
 
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 
@@ -29,7 +42,6 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
 
    Route::get('/posts', [PostController::class, 'index'])->name('admin.posts.index');
-//    Route::get('/posts/fetch_data', [PostController::class, 'fetch_data'])->name('admin.posts.fetch_data');
    Route::get('/add-post', [PostController::class, 'create']);
    Route::post('/add-post', [PostController::class, 'store']);
    Route::get('/edit-post/{post}', [PostController::class, 'edit'])->name('edit-post');
@@ -38,5 +50,16 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 
    Route::get('/settings',[SettingsController::class,'index']);
    Route::post('/settings',[SettingsController::class,'savedata']);
-   
+
+   //Route::resource('/page-metadata', PageMetadataController::class);
+   Route::get('/page-metadata', [PageMetadataController::class, 'index'])->name('admin.page-metadata.index');
+   Route::get('/page-metadata/create', [PageMetadataController::class, 'create'])->name('admin.page-metadata.create');
+   Route::post('admin/page-metadata', [PageMetadataController::class, 'store'])->name('admin.page-metadata.store');
+   Route::get('admin/page-metadata/{id}/edit', [PageMetadataController::class, 'edit'])
+    ->name('admin.page-metadata.edit');
+    Route::delete('admin/page-metadata/{id}', [PageMetadataController::class, 'destroy'])
+    ->name('admin.page-metadata.destroy');
+    Route::put('admin/page-metadata/{id}', [PageMetadataController::class, 'update'])
+    ->name('admin.page-metadata.update');
+
 }); 
