@@ -1,3 +1,62 @@
+.paging-block ul li a.prev, .paging-block ul li a.next {
+    font-size: 12px;
+    padding-top: 7px;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+a {
+    color: #061018;
+    text-decoration: none !important;
+}
+
+
+a:hover {
+    color:#f29200;
+    text-decoration:none;
+    cursor:pointer;
+}
+.pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+  }
+  .pagination
+  .page-item.disabled {
+    display: inline-block;
+    padding: 4x 6px;
+  }
+
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+.pagination a:hover:not(.active) {background-color: #ffcb6a;}
+.blog-sidebar .article-box {
+    display: block;
+    padding-bottom: 43px;
+}
+
+.page-item.active  .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #f29200;
+    border-color: #f29200;
+    margin-block: -2px;
+    border-radius: 5px;
+
+}
+
+
 ul.phoneiconsec li:first-child{
 	padding-left: 0px;
 }
@@ -56,6 +115,25 @@ img.img-logo {
 .icons:hover:after {
   opacity: 1;
   transform: scale(1.15);
+}
+.post-description{
+	overflow-y:scroll;
+	scrollbar-width: none;
+}
+
+
+
+.post-code-bg{
+	width: fit-content;
+	min-width: 100%;
+	background-color: #ced4da !important;
+	width: 100% !important;
+	overflow-x: scroll !important;
+	position: relative;
+	padding: 1rem 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
 }
 .icons:after {
     pointer-events: none;
@@ -179,7 +257,7 @@ ul.counter-listing li {
     transition: 0.5s;
     border-radius: 5px;
 }
-a.dropdown-item i{	
+a.dropdown-item i{
 	font-size: 16px;
 	display: none;
     margin-top: 4px;
@@ -233,7 +311,7 @@ p.title-development {
     top: 0px;
     left: 0px;
     width: 100%;
-    background: #e7e7e7;
+    background: #ffffff;
     z-index: 111;
 }
 .fixed-header .navbar-nav .nav-link{
@@ -499,6 +577,11 @@ strong {
 }
 .img-fluid{
     width: 100%;
+    max-height: 400px;
+}
+.overflow-auto {
+    overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    /* Add any other styles you need for the container here */
 }
 a.know-more:hover:before {
     margin-right: 18px;
@@ -590,13 +673,13 @@ p.pricetitle {
     text-align: right;
 }
 .graphic-bar{
-    animation:graphic 2s forwards ease;  
+    animation:graphic 2s forwards ease;
 }
 .web-bar{
-    animation:webbar 2s forwards ease;  
+    animation:webbar 2s forwards ease;
 }
 .mobile-bar{
-    animation:mobilebar 2s forwards ease;  
+    animation:mobilebar 2s forwards ease;
 }
 h4.title-graphic {
     font-size: 16px;
@@ -723,4 +806,17 @@ h4.title-graphic {
     .ourskill {
         margin-top: 20px;
     }
+    .pagination {
+        display: inline-block;
+      }
+
+    .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    }
+
+    
+    
 }

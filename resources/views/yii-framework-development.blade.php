@@ -77,7 +77,7 @@
 </section>
 <section class="portfolio-outer padding-lg"> 
     <div class="container text-center">
-        <h2 class="main-title">Related Portfilio</h2>
+        <h2 class="main-title">Related Portfolio</h2>
         <ul class="row portfolio clearfix isotopeContainer">
             <li class="col-6 col-md-4 isotopeSelector yiitwo">
                 <div class="inner">

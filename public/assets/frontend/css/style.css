@@ -1703,7 +1703,7 @@ ul.marketing-list3 li a:hover {
 	display: block;
 	padding: 40px 13%;
 	background: #f4f4f4;
-	background: -moz-linear-gradient(top, #f4f4f4 0%, #ffffff 15%);
+	background: -moz-linear-gradient(top, #f4f4f4 0%, #705353 15%);
 	background: -webkit-linear-gradient(top, #f4f4f4 0%, #ffffff 15%);
 	background: linear-gradient(to bottom, #f4f4f4 0%, #ffffff 15%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#ffffff', GradientType=0 );
@@ -3959,7 +3959,7 @@ ul.portfolio-filter li.active a {
 }
 .blog-content {
 	display: block;
-	margin-right: 98px;
+	margin-right: 22px;
 }
 .blog-content > ul > li {
 	display: block;
@@ -4144,7 +4144,7 @@ ul.blog-tag li a:hover {
 	line-height: normal;
 }
 .blog-sidebar .cmn-box ul li a:hover {
-	color: #404638;
+	color: #f29200;
 }
 .blog-sidebar .cmn-box ul li a span.count {
 	font-size: 12px;
@@ -7983,7 +7983,7 @@ ul.Product-listing.right-sec li .bottom .add-cart{
 		border: 2px #57bce2 solid !important;
 	}
 	.opt5 .navbar-expand-lg .navbar-nav .nav-link {
-		color: #111;
+		color: #ffff;
 	}
 	.opt5 .navbar-right > li a {
 		color: #57bce2 !important;

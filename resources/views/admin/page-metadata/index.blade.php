@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1>Page Metadata</h1>
-        <table class="table table-bordered">
+        <h1 style="margin-top: 34px;  margin-bottom: 34px;">Page Metadata</h1>
+        <table id="myDataTable" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Page Name</th>
@@ -22,10 +22,12 @@
                         <td>{{ $metadata->meta_description }}</td>
                         <td>
                             <a href="{{ route('admin.page-metadata.edit', $metadata->id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('admin.page-metadata.destroy', $metadata->id) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('admin.page-metadata.destroy', $metadata->id) }}" method="POST"
+                                style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this page metadata?')">Delete</button>
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this page metadata?')">Delete</button>
                             </form>
                         </td>
                     </tr>

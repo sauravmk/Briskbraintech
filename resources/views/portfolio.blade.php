@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('title', 'portfolio - Laravel-WordPress-Yii/Yii2')
+@section('title', $metaTitle)
+@section('meta-description', $metaDescription)
 @section('content')
 <section class="banner-section portfolio-banner">
             <div class="container">
@@ -10,7 +11,7 @@
         </section>        
         <section class="portfolio-outer padding-lg"> 
             <div class="container text-center">
-                <h2 class="main-title">Portfilio</h2>
+                <h2 class="main-title">Portfolio</h2>
                 <div class="isotopeFilters">
                     <ul class="portfolio-filter clearfix">
                         <li class="active"><a href="#" data-filter="*">All</a></li>

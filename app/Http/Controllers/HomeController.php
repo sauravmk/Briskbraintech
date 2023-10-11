@@ -18,20 +18,14 @@ class HomeController extends Controller
         //$this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         return view('home');
     }
     public function about()
     {
-       
-        $routeName = Route::currentRouteName();       
-        $pageMetadata = PageMetadata::where('page_name', $routeName)->first();       
+        $routeName = Route::currentRouteName();
+        $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
         $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
 
@@ -41,11 +35,18 @@ class HomeController extends Controller
 
         return view('about', compact('metaTitle', 'metaDescription'));
     }
-
-
     public function portfolio()
     {
-        return view('portfolio');
+        $routeName = Route::currentRouteName();
+        $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
+        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
+        // Pass the meta data to the view
+        view()->share('metaTitle', $metaTitle);
+        view()->share('metaDescription', $metaDescription);
+
+        return view('portfolio', compact('metaTitle', 'metaDescription'));
     }
 
     public function blog()

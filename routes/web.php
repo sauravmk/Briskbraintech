@@ -29,7 +29,8 @@ Route::get('/Ruby',[App\Http\Controllers\HomeController::class,'Ruby'])->name('R
 
 Route::get('/',[FrontendController::class,'index']);
 Route::get('/home', [FrontendController::class, 'index'])->name('home');
-
+Route::get('/blog',[FrontendController::class,'blog'])->name('blog');
+Route::get('/blogsingle/{post_id}',[FrontendController::class,'blogsingle'])->name('blogsingle');
 
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 

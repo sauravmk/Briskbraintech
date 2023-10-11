@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Default Page Title')</title>
+    <title>@yield('title', 'BriskBrain')</title>
 
 
     <meta name="description" content="@yield('meta-description', 'BriskBrain.')">
@@ -30,6 +30,7 @@
     <link href="{{ asset('assets/frontend/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/custom.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
     
 
 
@@ -63,11 +64,17 @@
     <script type="text/javascript" src="{{ asset('assets/frontend/js/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/frontend/js/common.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/frontend/js/jquery.easypiechart.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 
     
     <script>
         //Get the button
         let mybutton = document.getElementById("btn-back-to-top");
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#myDataTable').DataTable();
+        });
     </script>
 </body>
 

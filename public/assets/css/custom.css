@@ -70,3 +70,38 @@
     max-width: 10px;
     max-height: 10px;
 }
+
+/* metadata */
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Table headings */
+  th {
+    background-color: #eee;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Table rows */
+  tr {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Table cells */
+  td {
+    padding: 10px;
+  }
+  
+  /* Table actions */
+  td.action {
+    text-align: center;
+  }
+  
+  /* Buttons */
+  .btn {
+    margin: 5px;
+  }
+  
