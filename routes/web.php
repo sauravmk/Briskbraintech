@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -31,6 +32,9 @@ Route::get('/',[FrontendController::class,'index']);
 Route::get('/home', [FrontendController::class, 'index'])->name('home');
 Route::get('/blog',[FrontendController::class,'blog'])->name('blog');
 Route::get('/blogsingle/{post_id}',[FrontendController::class,'blogsingle'])->name('blogsingle');
+
+//For Comments
+Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 

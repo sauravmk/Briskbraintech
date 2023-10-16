@@ -3,15 +3,17 @@
 @section('title', 'Posts')
 
 @section('content')
-
-    <div class="container-fluid px-4">
-        <div class="d-flex justify-content-between align-items-center">
-            <h1 class="mt-4">Posts</h1>
-            <a href="{{ url('admin/add-post') }}" class="btn btn-primary">Add Posts</a>
+<div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-4">Posts</h1>
+        <div class="button-container">
+            <a href="{{ url('admin/add-post') }}" class="btn btn-primary custom-button"  >Add Posts</a>
+            <a href="{{ url('/blog') }}" class="btn btn-warning custom-button" target="_blank">View Posts</a>
         </div>
-        <div class="container">            
-            <div class="row">
-                <div class="col-md-12">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
                     <table id="myDataTable" class="table">
                         <thead>
                             <tr>
@@ -45,13 +47,19 @@
                                         @endforeach
                                     </td> --}}
                                     <td>
-                                        <a href="{{ route('edit-post', $post->post_id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('blogsingle', ['post_id' => $post->post_id]) }}" class="btn btn-sm btn-info" target="_blank">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>                                        
+                                        <a href="{{ route('edit-post', $post->post_id) }}" class="btn btn-success">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>                                      
                                         <form action="{{ route('delete-post', $post->post_id) }}" method="POST"
                                             style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                                                onclick="return confirm('Are you sure you want to delete this post?')">
+                                                <i class="fas fa-trash"></i> Delete</button>
                                         </form>
                                     </td>
                                 </tr>

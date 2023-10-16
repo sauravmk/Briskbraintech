@@ -25,12 +25,20 @@ class Post extends Model
         'status',
         'created_by'
     ];
-    public function tags()
+    /* public function tags()
     {
         return $this->belongsToMany(Tag::class);
-    }
+    } */
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(Post::class,'created_by','id');
     }
 }

@@ -1,5 +1,3 @@
-
-
 <footer class="footer">
     <div class="top">
         <div class="container">
@@ -9,8 +7,8 @@
                         @php
                             $setting = App\Models\Settings::find(1);
                         @endphp
-                         <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{ $setting->logo }}" class="img-logo"
-                            alt=""></a>
+                        <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{ $setting->logo }}" class="img-logo"
+                                alt=""></a>
                         <div class="connect-outer">
                             <h4>Contact Info</h4>
                             <ul class="contact-sec">
@@ -19,7 +17,9 @@
                                 <li><a href="mailto:hello@briskbraintech.com"><i class="fa fa-envelope mailicon"
                                             aria-hidden="true"></i>{{ $setting->email }}</a></li>
                                 <li class="address-li">
-                                    <a  href="https://www.google.com/maps/place/BriskBrain+Technologies/@23.113883,72.541279,15z/data=!4m5!3m4!1s0x0:0xde25685d973da59f!8m2!3d23.1138826!4d72.5412793?hl=en"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+                                    <a
+                                        href="https://www.google.com/maps/place/BriskBrain+Technologies/@23.113883,72.541279,15z/data=!4m5!3m4!1s0x0:0xde25685d973da59f!8m2!3d23.1138826!4d72.5412793?hl=en"><i
+                                            class="fa fa-map-marker" aria-hidden="true"></i></a>
                                     <p>{{ $setting->address }}</p>
                                 </li>
                             </ul>
@@ -65,31 +65,22 @@
                                     on Rails Development</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>                
                 <div class="col-md-4 col-lg-3">
                     <div class="subscribe">
                         <h4>Recent Posts</h4>
                         <ul class="footertext">
-                            <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="javascript:void(0)">Top
-                                    Laravel Best Practices In 2021</a></li>
-                            <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="javascript:void(0)">How
-                                    to Set up Vue, Vuex, Vue-Router & Sass in Laravel 8</a></li>
-                            <li><i class="fa fa-angle-right" aria-hidden="true"></i><a
-                                    href="javascript:void(0)">Building a CRUD system using Laravel 8, Laravel Orion,
-                                    Angular 11 & JWT</a></li>
-                            <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="javascript:void(0)">How
-                                    to setup and configure Ejabberd on Ubuntu 16.04 EC2 AWS ?</a></li>
+                            @foreach ($resentpost as $latestitem)
+                                <li>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    <a href="{{ url('blogsingle/' . $latestitem->post_id) }}">
+                                        {{ $latestitem->name }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="subscribe">
-                        {{-- <h4>Recent Posts</h4>@foreach ($latestpost as $latestitem)
-                        <ul class="footertext">
-                            <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="javascript:void(0)">{{$latestitem->name}}</a></li>
-                        </ul>@endforeach --}}
-                    </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
@@ -97,3 +88,11 @@
         <div class="container">Copyright © Briskbrain Technologies - All rights reserved</div>
     </div>
 </footer>
+<a href="#" class="scroll-top"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+<div class="whatsapp">
+    <a href="https://web.whatsapp.com/send?phone=919428889935&amp;text=Hello%20BriskBrain"
+        style="position: fixed; background: #fff; padding: 10px; border-radius: 100%; left: 20px; width: 55px; height: 55px; bottom: 20px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); z-index: 99; animation: bounce 2s infinite;">
+        <img src="https://www.briskbraintech.com/wp-content/uploads/2023/08/whatsapp.svg" alt="WhatsApp"
+            style="width: 100%; height: 100%;" />
+    </a>
+</div>

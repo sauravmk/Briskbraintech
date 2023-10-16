@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', $viewblogs->meta_title . ' - BriskBrain Technologies')
+@section('meta-description', $viewblogs->meta_description . ' - BriskBrain Technologies')
 @section('content')
     <section class="banner-section blog-banner">
         <div class="container">
@@ -26,7 +28,46 @@
                                 <div class="overflow-auto p-3 bg-light" style="max-width: 1160px; max-height: 1000px">
                                     <p>{!! $viewblogs->description !!}</p>
                                 </div>
-                               
+                                {{-- <div class="box">
+                                    <ul class="blog-info">
+                                        @if ($viewblogs->comments->count() == 0)
+                                            <li class="comment"><a href="javascript:void(0)">No comments yet</a></li>
+                                        @else
+                                            <li class="comment"><a
+                                                    href="javascript:void(0)">{{ $viewblogs->comments->count() }}
+                                                    comments</a></li>
+                                        @endif
+                                        <li class="icon-men">By Admin</li>
+                                    </ul>
+                                </div>
+                                <h3>Comments</h3>
+                                @include('commentsDisplay', [
+                                    'comments' => $viewblogs->comments,
+                                    'post_id' => $viewblogs->id,
+                                ])
+                                <h4>Add comment</h4>
+                                <form method="post" action="{{ route('comments.store') }}">
+                                    @csrf
+                                    @if (!auth()->check())
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" name="name" class="form-control"
+                                                placeholder="Your name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" class="form-control"
+                                                placeholder="Your email" />
+                                        </div>
+                                    @endif
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="body"></textarea>
+                                        <input type="hidden" name="post_id" value="{{ $viewblogs->id }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary" value="Add Comment" />
+                                    </div>
+                                </form> --}}
                                 <div class="social-media-box socialbox">
                                     <ul>
                                         <li><a target="_blank" href="https://www.facebook.com/BriskBrainTechnologies/"><i
@@ -38,9 +79,9 @@
                                         <li><a target="_blank"
                                                 href="https://www.addtoany.com/add_to/email?linkurl=https%3A%2F%2Fwww.briskbraintech.com%2Fbuilding-a-crud-system-using-laravel-8-laravel-orion-angular-11-jwt%2F&linkname=Building%20a%20CRUD%20system%20using%20Laravel%208%2C%20Laravel%20Orion%2C%20Angular%2011%20%26%20JWT&linknote="><i
                                                     class="fa fa-envelope"></i></a></li>
-                                      {{--   <li><a target="_blank"
+                                       <li><a target="_blank"
                                                 href="https://www.addtoany.com/add_to/whatsapp?linkurl=https%3A%2F%2Fwww.briskbraintech.com%2Fbuilding-a-crud-system-using-laravel-8-laravel-orion-angular-11-jwt%2F&linkname=Building%20a%20CRUD%20system%20using%20Laravel%208%2C%20Laravel%20Orion%2C%20Angular%2011%20%26%20JWT&linknote="><i
-                                                    class="fa fa-whatsapp"></i></a></li> --}}
+                                                    class="fa fa-whatsapp"></i></a></li> 
                                     </ul>
                                 </div>
                             </li>

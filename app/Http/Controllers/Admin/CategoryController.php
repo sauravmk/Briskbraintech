@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
         return view('admin.category.index', ['categories' => $categories]);
     }
- 
+
 
     public function create()
     {
@@ -43,7 +43,7 @@ class CategoryController extends Controller
         if ($imagePath !== null) {
             $categoryData['image'] = $imagePath;
         }
-
+        //dd($categoryData);
         Category::create($categoryData);
 
         return redirect('admin/add-category')->with('success', 'Category Added Successfully');
@@ -66,6 +66,9 @@ class CategoryController extends Controller
         // Use the handleFileUpload method to get the image path
         $imagePath = $this->handleFileUpload($request);
         $data['slug'] = Str::slug($request->input('slug'));
+        // Update navbar_status
+        $data['navbar_status'] = $request->has('navbar_status') ? 1 : 0;
+        $data['status'] = $request->has('status') ? 1 : 0;
         if ($imagePath !== null) {
             // Delete the old image file (if it exists)
             $oldImage = $category->image;
@@ -94,12 +97,12 @@ class CategoryController extends Controller
             $image->move($destinationPath, $name);
             return '/images/category/' . $name;
         }
-        return null; 
+        return null;
     }
 
     public function destroy($id)
     {
-       
+
         $category = Category::findOrFail($id);
 
         $category->delete();
@@ -120,7 +123,7 @@ class CategoryController extends Controller
         ];
 
         if ($forCreate) {
-            $rules['image'] = 'image|mimes:jpg,png,jpeg|max:4096';
+            $rules['image'] = 'image|mimes:jpg,png,jpeg,webp|max:4096';
         }
 
         return $rules;

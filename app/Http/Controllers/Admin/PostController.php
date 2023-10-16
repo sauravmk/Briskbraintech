@@ -16,7 +16,8 @@ class PostController extends Controller
     {
 
         $data = Post::all();
-        return view('admin.posts.index', compact('data'));
+        $categories = Category::all();
+        return view('admin.posts.index', compact('data','categories'));
     }
 
     public function create()
@@ -39,7 +40,7 @@ class PostController extends Controller
             'category_id', 'name', 'description', 'yt_iframe', 'meta_title', 'meta_description', 'meta_keywords',
         ]);
 
-        $post['status'] = $request->input('status', 0);
+        $post['status'] = $request->has('status') ? 1 : 0;
 
         // Generate a slug from the 'name' field and set it in the 'slug' field
         $post['slug'] = Str::slug($request->input('slug'));
@@ -122,7 +123,7 @@ class PostController extends Controller
 
         ];
         if ($forCreate) {
-            $rules['image'] = 'image|mimes:jpg,png,jpeg|max:4096';
+            $rules['image'] = 'image|mimes:jpg,png,jpeg,webp|max:4096';
         }
         return $rules;
     }

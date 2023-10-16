@@ -13,14 +13,14 @@ class FrontendController extends Controller
 {
   public function index()
   {
-
-    return view('frontend.index');
+    $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(5);
+    return view('frontend.index',compact('resentpost'));
   }
 
   public function blog($month = null)
   {
     $latestpost =  Post::orderBy('created_at', 'DESC')->get()->take(3);
-
+    $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(5);
     $posts = Post::orderBy('created_at', 'DESC')->where('status', 0); //0 for Show - 1 for Hide the blog
 
     if ($month) {
@@ -34,7 +34,7 @@ class FrontendController extends Controller
         return Carbon::parse($date->created_at)->format('F Y');
       })
       ->map(function ($group) {
-        return $group->take(3)->sortBy('created_at'); //Archive post limit 3/month
+        return $group->take(3)->sortBy('created_at'); 
       });
 
     $routeName = Route::currentRouteName();
@@ -46,15 +46,12 @@ class FrontendController extends Controller
     view()->share('metaTitle', $metaTitle);
     view()->share('metaDescription', $metaDescription);
 
-    return view('blog', compact('posts', 'latestpost', 'metaTitle', 'metaDescription', 'archives'));
+    return view('blog', compact('posts', 'latestpost', 'metaTitle', 'metaDescription','resentpost', 'archives'));
   }
 
   public function blogsingle($post_id)
-  {
-    //echo $id; exit;
-    // dd($id);
-    //  exit;
-
+  { 
+    $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(5);
     $latestposts =  Post::orderBy('created_at', 'DESC')->get()->take(3);
     $viewblogs = Post::find($post_id);
 
@@ -66,6 +63,6 @@ class FrontendController extends Controller
         return $group->sortBy('created_at');
       });
 
-    return view('blogsingle', compact('viewblogs', 'latestposts', 'archives', 'post_id'));
+    return view('blogsingle', compact('viewblogs', 'latestposts','resentpost', 'archives', 'post_id'));
   }
 }

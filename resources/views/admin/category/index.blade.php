@@ -35,11 +35,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-success">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>                                      
                                     <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')"><i class="fas fa-trash"></i> Delete</button>
                                     </form>
                                 </td>
                             </tr>
