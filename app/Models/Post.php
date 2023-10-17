@@ -11,7 +11,7 @@ class Post extends Model
     use HasFactory, HasTags;
 
     protected $table = 'posts';
-    protected $primaryKey = 'post_id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'category_id',
         'name',
@@ -25,10 +25,7 @@ class Post extends Model
         'status',
         'created_by'
     ];
-    /* public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    } */
+  
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

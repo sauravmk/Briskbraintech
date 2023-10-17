@@ -42,7 +42,7 @@
                                     </ul> --}}
                                 </div>
                                 <p>{{ strlen(strip_tags($postitem->description)) > 50 ? substr(strip_tags($postitem->description), 0, 50) . '...' : strip_tags($postitem->description) }}</p>
-                                <a href="{{ url('blogsingle/' . $postitem->post_id) }}" class="know-more">Read more</a>
+                                <a href="{{ url('blogsingle/' . $postitem->id) }}" class="know-more">Read more</a>
                                 <div class="social-media-box socialbox">
                                     <ul>
                                         <li><a target="_blank" href="https://www.facebook.com/BriskBrainTechnologies/"><i

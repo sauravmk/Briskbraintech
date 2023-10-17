@@ -65,22 +65,24 @@
                                     on Rails Development</a></li>
                         </ul>
                     </div>
-                </div>                
+                </div>
                 <div class="col-md-4 col-lg-3">
                     <div class="subscribe">
                         <h4>Recent Posts</h4>
                         <ul class="footertext">
-                            @foreach ($resentpost as $latestitem)
-                                <li>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    <a href="{{ url('blogsingle/' . $latestitem->post_id) }}">
-                                        {{ $latestitem->name }}
-                                    </a>
-                                </li>
-                            @endforeach
+                            @if (!in_array(Route::currentRouteName(), ['login', 'register']))
+                                @foreach ($resentpost as $latestitem)
+                                    <li>
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        <a href="{{ url('blogsingle/' . $latestitem->id) }}">
+                                            {{ $latestitem->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>

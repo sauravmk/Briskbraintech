@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
-    use HasFactory;
     use HasFactory;
     protected $fillable = ['user_id', 'post_id', 'parent_id', 'name', 'email', 'body'];
 
@@ -39,4 +39,6 @@ class Comment extends Model
             return 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=80';
         }
     }
+
+
 }

@@ -49,12 +49,15 @@ class FrontendController extends Controller
     return view('blog', compact('posts', 'latestpost', 'metaTitle', 'metaDescription','resentpost', 'archives'));
   }
 
-  public function blogsingle($post_id)
-  { 
+  public function blogsingle($id)
+{ 
     $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(5);
     $latestposts =  Post::orderBy('created_at', 'DESC')->get()->take(3);
-    $viewblogs = Post::find($post_id);
+    $viewblogs = Post::find($id);
 
+    // Correctly retrieve comments associated with the post
+   // $comments = $viewblogs->comments;
+    //dd($viewblogs->comments);
     $archives = Post::all()
       ->groupBy(function ($date) {
         return Carbon::parse($date->created_at)->format('F Y');
@@ -63,6 +66,7 @@ class FrontendController extends Controller
         return $group->sortBy('created_at');
       });
 
-    return view('blogsingle', compact('viewblogs', 'latestposts','resentpost', 'archives', 'post_id'));
-  }
+    return view('blogsingle', compact('viewblogs', 'latestposts', 'resentpost', 'archives', 'id'));
+}
+
 }

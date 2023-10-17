@@ -31,10 +31,12 @@ Route::get('/Ruby',[App\Http\Controllers\HomeController::class,'Ruby'])->name('R
 Route::get('/',[FrontendController::class,'index']);
 Route::get('/home', [FrontendController::class, 'index'])->name('home');
 Route::get('/blog',[FrontendController::class,'blog'])->name('blog');
-Route::get('/blogsingle/{post_id}',[FrontendController::class,'blogsingle'])->name('blogsingle');
+Route::get('/blogsingle/{id}',[FrontendController::class,'blogsingle'])->name('blogsingle');
 
 //For Comments
 Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
+//Route::post('/comments', 'CommentController@store')->name('comments.store');
+Route::put('/comments/{comment}', 'CommentController@update')->name('comments.update')->middleware('isAdmin');
 
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 

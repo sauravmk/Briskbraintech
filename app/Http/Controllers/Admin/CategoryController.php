@@ -105,6 +105,7 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
 
+        $category->posts()->delete();
         $category->delete();
 
         return redirect()

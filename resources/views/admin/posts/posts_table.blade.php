@@ -16,8 +16,8 @@
             @endforeach
         <td>
         <td>
-            <a href="{{ route('edit-post', $post->post_id) }}" class="btn btn-primary">Edit</a>
-            <form action="{{ route('delete-post', $post->post_id) }}" method="POST" style="display: inline;">
+            <a href="{{ route('edit-post', $post->pid) }}" class="btn btn-primary">Edit</a>
+            <form action="{{ route('delete-post', $post->id) }}" method="POST" style="display: inline;">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger"

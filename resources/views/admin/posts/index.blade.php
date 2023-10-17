@@ -47,13 +47,13 @@
                                         @endforeach
                                     </td> --}}
                                     <td>
-                                        <a href="{{ route('blogsingle', ['post_id' => $post->post_id]) }}" class="btn btn-sm btn-info" target="_blank">
+                                        <a href="{{ route('blogsingle', ['id' => $post->id]) }}" class="btn btn-sm btn-info" target="_blank">
                                             <i class="fas fa-eye"></i> View
                                         </a>                                        
-                                        <a href="{{ route('edit-post', $post->post_id) }}" class="btn btn-success">
+                                        <a href="{{ route('edit-post', $post->id) }}" class="btn btn-success">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>                                      
-                                        <form action="{{ route('delete-post', $post->post_id) }}" method="POST"
+                                        <form action="{{ route('delete-post', $post->id) }}" method="POST"
                                             style="display: inline;">
                                             @csrf
                                             @method('DELETE')

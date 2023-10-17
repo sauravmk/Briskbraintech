@@ -28,7 +28,7 @@
                                 <div class="overflow-auto p-3 bg-light" style="max-width: 1160px; max-height: 1000px">
                                     <p>{!! $viewblogs->description !!}</p>
                                 </div>
-                                {{-- <div class="box">
+                                <div class="box">
                                     <ul class="blog-info">
                                         @if ($viewblogs->comments->count() == 0)
                                             <li class="comment"><a href="javascript:void(0)">No comments yet</a></li>
@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                         <input type="submit" class="btn btn-primary" value="Add Comment" />
                                     </div>
-                                </form> --}}
+                                </form>
                                 <div class="social-media-box socialbox">
                                     <ul>
                                         <li><a target="_blank" href="https://www.facebook.com/BriskBrainTechnologies/"><i
@@ -106,7 +106,7 @@
                                         </figure>
                                     </div>
                                     <a class="blog-title" text-decoration="none"
-                                        href="{{ $latestitems->post_id }}">{{ $latestitems->name }}</a>
+                                        href="{{ $latestitems->id }}">{{ $latestitems->name }}</a>
                                     <p class="time fa fa-calendar">{{ $latestitems->created_at->format('F d, Y') }}</p>
                                 </div>
                             @endforeach
@@ -120,7 +120,7 @@
                                         <ul class="post-submenu" style="display: none">
                                             @foreach ($posts as $post)
                                                 <li><a
-                                                        href="{{ route('blogsingle', ['post_id' => $post->post_id]) }}">{{ $post->name }}</a>
+                                                        href="{{ route('blogsingle', ['id' => $post->id]) }}">{{ $post->name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
