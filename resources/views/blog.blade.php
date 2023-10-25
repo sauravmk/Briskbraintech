@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', $metaTitle)
+@section('title', $title)
+@section('meta-title', $metaTitle)
 @section('meta-description', $metaDescription)
-
 @section('content')
     <section class="banner-section blog-banner">
         <div class="container">
@@ -42,7 +42,7 @@
                                     </ul> --}}
                                 </div>
                                 <p>{{ strlen(strip_tags($postitem->description)) > 50 ? substr(strip_tags($postitem->description), 0, 50) . '...' : strip_tags($postitem->description) }}</p>
-                                <a href="{{ url('blogsingle/' . $postitem->id) }}" class="know-more">Read more</a>
+                                <a href="{{ url('blogsingle/' . $postitem->slug) }}" class="know-more">Read more</a>
                                 <div class="social-media-box socialbox">
                                     <ul>
                                         <li><a target="_blank" href="https://www.facebook.com/BriskBrainTechnologies/"><i
@@ -107,8 +107,7 @@
                                 <li><a href="{{ url('service') }}">Services</a></li>
                                 <li><a href="{{ url('portfolio') }}">Portfolio</a></li>
                                 <li><a href="{{ url('blog') }}">Blog</a></li>
-                                <li><a href="{{ url('contact') }}">Contacts</a></li>
-                                <li><a href="request-a-quote.html">Request A Quote</a></li>
+                                <li><a href="{{ url('contact') }}">Contacts</a></li>                                
                             </ul>
                         </div>
                     </div>

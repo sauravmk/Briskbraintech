@@ -28,7 +28,6 @@
                         @endforeach
                     </select>
                 </div>
-
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
@@ -37,7 +36,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="slug">Slug</label>
                     <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror"
@@ -46,7 +44,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
                     <input type="file" name="image" class="form-control-file @error('image') is-invalid @enderror"
@@ -55,12 +52,10 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <img id="image-preview" src="{{ isset($post) ? asset($post->image) : '#' }}" alt="Image Preview"
                         style="max-width: 100%;" />
                 </div>
-
                 <div class="mb-3">
                     <label for="description">Description</label>
                     <textarea name="description" class="form-control  @error('description') is-invalid @enderror" id="description">{{ isset($post) ? $post->description : old('description') }}</textarea>
@@ -68,7 +63,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="yt_iframe">YouTube Iframe</label>
                     <input type="text" name="yt_iframe" class="form-control @error('yt_iframe') is-invalid @enderror"
@@ -85,7 +79,7 @@
                         @endforeach
                       </select>
                 </div> --}}
-               {{--  <div class="form-group">
+                {{--  <div class="form-group">
                     <label>Tags : <span class="text-danger">*</span></label>
                     <br>
                     <input type="text" data-role="tagsinput" name="tags" class="form-control tags">
@@ -95,7 +89,6 @@
                     @endif
                 </div> --}}
                 <h1>SEO</h1>
-
                 <div class="mb-3">
                     <label for="meta_title">Meta Title</label>
                     <input type="text" name="meta_title" class="form-control @error('meta_title') is-invalid @enderror"
@@ -104,7 +97,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="meta_description">Meta Description</label>
                     <textarea name="meta_description" class="form-control @error('meta_description') is-invalid @enderror"
@@ -113,7 +105,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="meta_keywords">Meta Keywords</label>
                     <textarea name="meta_keywords" class="form-control @error('meta_keywords') is-invalid @enderror" id="meta_keywords">{{ isset($post) ? $post->meta_keywords : old('meta_keywords') }}</textarea>
@@ -121,25 +112,27 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <h3>Status</h3>
                 <div class="mb-3">
                     <label for="status">Status</label>
                     <input type="checkbox" name="status" id="status" value="1"
                         {{ isset($post) && $post->status == 1 ? 'checked' : '' }}>
                 </div>
-
                 <div class="mb-3">
                     <label for="created_by">Created By</label>
                     <input type="text" name="created_by" class="form-control" id="created_by"
                         value="{{ isset($post) ? $post->created_by : old('created_by') }}">
                 </div>
-
                 <button type="submit" class="btn btn-primary">{{ isset($post) ? 'Update' : 'Submit' }}</button>
             </form>
         </div>
     </div>
-
+    <!-- Remove tinyMc warning of editer -->
+    <style>
+        .tox-notifications-container {
+            display: none !important;
+        }
+    </style>
     <!-- Your existing JavaScript code for image preview -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
@@ -160,7 +153,8 @@
         });
         tinymce.init({
             selector: '#description',
-           
+            plugins: 'image',
+            toolbar: 'undo redo | image | formatselect | bold italic underline | alignleft aligncenter alignright | numlist bullist',
             a_configuration_option: 400
         });
     </script>

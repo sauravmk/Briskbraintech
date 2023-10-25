@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Mail\QuoteRequest;
 use App\Models\PageMetadata;
 use Illuminate\Http\Request;
+use App\Mail\ContactFormSubmitted;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
@@ -29,14 +32,15 @@ class HomeController extends Controller
     {
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "about|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('about', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('about', compact('metaTitle','resentpost','title', 'metaDescription'));
     }
 
     public function portfolio()
@@ -44,18 +48,50 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "portfolio|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('portfolio', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('portfolio', compact('metaTitle','resentpost','title', 'metaDescription'));
     }
 
+    public function submitForm(Request $request)
+    {   
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'website' => 'string|nullable',
+            'description' => 'required|string',
+        ]);       
+        Mail::to('manish.bhuvait@gmail.com')->send(new QuoteRequest($validatedData));
+
+        $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
+        return view('frontend.index',compact('resentpost'));
+    }
+    
     public function contact()
     {
+        $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
+        $routeName = Route::currentRouteName();
+        $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
+        $title = $pageMetadata ? $pageMetadata->title : "contact|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
+        $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
+        // Pass the meta data to the view
+        view()->share('metaTitle', $metaTitle);
+        view()->share('metaDescription', $metaDescription);
+
+        return view('contact', compact('metaTitle','resentpost','title', 'metaDescription'));
+    }
+
+    public function sendEmail(Request $request)
+    {
+        Mail::to('manish.bhuvait@gmail.com')->send(new ContactFormSubmitted($request->all()));
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
@@ -74,14 +110,16 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "Yii|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('yii-framework-development', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('yii-framework-development', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
 
     public function Laravel()
@@ -89,14 +127,16 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "Laravel|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('laravel-development', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('laravel-development', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
 
     public function Codeigniter()
@@ -104,14 +144,16 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "Codeigniter|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('codeigniter-development', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('codeigniter-development', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
 
     public function service()
@@ -119,14 +161,16 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "service | Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('service', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('service', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
 
     public function Magento()
@@ -134,14 +178,16 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "Magento | Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('magento-development', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('magento-development', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
 
     public function blog()
@@ -155,14 +201,15 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "WordPress | Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('wordpress-development', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('wordpress-development', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
 
     public function PHP()
@@ -170,14 +217,16 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "PHP | Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('custom-php-development', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('custom-php-development', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
    
     public function Ruby()
@@ -185,14 +234,15 @@ class HomeController extends Controller
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "Ruby | Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('ruby-development', compact('metaTitle','resentpost', 'metaDescription'));
+        return view('ruby-development', compact('metaTitle','title','resentpost', 'metaDescription'));
     }
    
 }

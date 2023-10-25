@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('title', $metaTitle)
+@section('title', $title)
+@section('meta-title', $metaTitle)
 @section('meta-description', $metaDescription)
 @section('content')
 <section class="banner-section portfolio-banner">

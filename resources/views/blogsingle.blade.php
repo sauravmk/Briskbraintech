@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('title', $viewblogs->meta_title . ' - BriskBrain Technologies')
+@section('title', $viewblogs->name . ' - BriskBrain Technologies')
+@section('meta-title', $viewblogs->meta_title . ' - BriskBrain Technologies')
 @section('meta-description', $viewblogs->meta_description . ' - BriskBrain Technologies')
 @section('content')
     <section class="banner-section blog-banner">
@@ -120,7 +121,7 @@
                                         <ul class="post-submenu" style="display: none">
                                             @foreach ($posts as $post)
                                                 <li><a
-                                                        href="{{ route('blogsingle', ['id' => $post->id]) }}">{{ $post->name }}</a>
+                                                        href="{{ route('blogsingle', ['slug' => $post->slug]) }}">{{ $post->name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>

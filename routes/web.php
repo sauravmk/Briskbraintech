@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -13,11 +16,13 @@ use App\Http\Controllers\Admin\PageMetadataController;
 
 
 Auth::routes();
+Route::post('/submit-form', [HomeController::class,'submitForm'])->name('submit.form');
+Route::get('/sitemap.xml', [SitemapController::class,'index'])->name('sitemap');
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about',[App\Http\Controllers\HomeController::class,'about'])->name('about');
 Route::get('/contact',[App\Http\Controllers\HomeController::class,'contact'])->name('contact');
+Route::post('/contact',[App\Http\Controllers\HomeController::class,'sendEmail'])->name('contact.submit');
+
 Route::get('/portfolio',[App\Http\Controllers\HomeController::class,'portfolio'])->name('portfolio');
 Route::get('/service',[App\Http\Controllers\HomeController::class,'service'])->name('service');
 Route::get('/Yii',[App\Http\Controllers\HomeController::class,'Yii'])->name('Yii');
@@ -31,12 +36,11 @@ Route::get('/Ruby',[App\Http\Controllers\HomeController::class,'Ruby'])->name('R
 Route::get('/',[FrontendController::class,'index']);
 Route::get('/home', [FrontendController::class, 'index'])->name('home');
 Route::get('/blog',[FrontendController::class,'blog'])->name('blog');
-Route::get('/blogsingle/{id}',[FrontendController::class,'blogsingle'])->name('blogsingle');
+//Route::get('/blogsingle/{id}',[FrontendController::class,'blogsingle'])->name('blogsingle');
+Route::get('/blogsingle/{slug}', [FrontendController::class, 'blogsingle'])->name('blogsingle');
 
 //For Comments
 Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
-//Route::post('/comments', 'CommentController@store')->name('comments.store');
-Route::put('/comments/{comment}', 'CommentController@update')->name('comments.update')->middleware('isAdmin');
 
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 
@@ -68,5 +72,13 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
     ->name('admin.page-metadata.destroy');
     Route::put('admin/page-metadata/{id}', [PageMetadataController::class, 'update'])
     ->name('admin.page-metadata.update');
+
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
+    Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+    Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 }); 

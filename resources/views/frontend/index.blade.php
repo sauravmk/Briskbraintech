@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+@section('title', $metaTitle)
+@section('meta-description', $metaDescription)
 <section class="banner-outer">
     <div class="banner-slider">
         <div class="banner banner1 slide1">
@@ -277,12 +279,12 @@
         </div>
         <ul class="row portfolio clearfix isotopeContainer">
             <li class="col-6 col-md-4 isotopeSelector business">
-                <div class="inner">
+                <div class="inner">  
                     <div class="overlay">
                         <h2>Laravel Backend Module development</h2>
                         <p>Laravel</p>
-                        <a class="galleryItem" href="img/portfoliyo/01.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/01.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/01.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/01.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector company">
@@ -290,8 +292,8 @@
                     <div class="overlay">
                         <h2>Tarafland</h2>
                         <p>Magento</p>
-                        <a class="galleryItem" href="img/portfoliyo/02.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/02.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/02.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/02.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector business">
@@ -299,8 +301,8 @@
                     <div class="overlay">
                         <h2>Laravel ERP Development</h2>
                         <p>Laravel</p>
-                        <a class="galleryItem" href="img/portfoliyo/03.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/03.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/03.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/03.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector yiitwo">
@@ -308,8 +310,8 @@
                     <div class="overlay">
                         <h2>Qaiwa</h2>
                         <p>Yii/Yii2</p>
-                        <a class="galleryItem" href="img/portfoliyo/04.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/04.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/04.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/04.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector webapp software">
@@ -317,8 +319,8 @@
                     <div class="overlay">
                         <h2>ScanUrl</h2>
                         <p>PHP</p>
-                        <a class="galleryItem" href="img/portfoliyo/05.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/05.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/05.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/05.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector company">
@@ -326,8 +328,8 @@
                     <div class="overlay">
                         <h2>Vissco</h2>
                         <p>Magento / Web Design</p>
-                        <a class="galleryItem" href="img/portfoliyo/06.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/06.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/06.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/06.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector wordpress">
@@ -335,8 +337,8 @@
                     <div class="overlay">
                         <h2>Robert Roth</h2>
                         <p>WordPress</p>
-                        <a class="galleryItem" href="img/portfoliyo/07.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/07.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/07.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/07.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector software">
@@ -344,8 +346,8 @@
                     <div class="overlay">
                         <h2>ScanUrl</h2>
                         <p>PHP</p>
-                        <a class="galleryItem" href="img/portfoliyo/08.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/08.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/08.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/08.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
             <li class="col-6 col-md-4 isotopeSelector company webapp">
@@ -353,8 +355,8 @@
                     <div class="overlay">
                         <h2>Vissco</h2>
                         <p>Magento / Web Design</p>
-                        <a class="galleryItem" href="img/portfoliyo/09.png') }}"><span class="icon-expand"></span></a></div>
-                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/09.png') }}" class="img-responsive" alt=""></figure>
+                        <a class="galleryItem" href="{{ asset('assets/frontend/img/portfoliyo/09.png') }}"><span class="icon-expand"></span></a></div>
+                    <figure><img src="{{ asset('assets/frontend/img/portfoliyo/09.png') }}" class="img-responsive" alt="" loading="lazy" ></figure>
                 </div>
             </li>
         </ul>

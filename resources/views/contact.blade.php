@@ -1,7 +1,8 @@
 @extends('layouts.app')
-@section('content')
-@section('title', $metaTitle)
+@section('title', $title)
+@section('meta-title', $metaTitle)
 @section('meta-description', $metaDescription)
+@section('content')
 <section class="banner-section contact-banner">
     <div class="container">
         <div class="contents">
@@ -15,7 +16,8 @@
         <div class="row">
             <div class="col-md-8 form-area">
                 <div class="contact-form-wrapper padding-lg">
-                    <form name="contact-form" id="ContactForm">
+                    <form name="contact-form" id="ContactForm" action="{{ route('contact.submit') }}"  enctype="multipart/form-data" method="post">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -75,9 +77,10 @@
                         <h3>Contact Info</h3>
                         <ul class="info-contact-box">
                             <li>
-                                <p>E-1205, Ganesh Glory-11,</p>
+                                <p>E-1205, Ganesh Glory 11,</p>
                                 <p>Jagatupr Road,</p>
-                                <p>Nr. BSNL Office, Off S.G.Hightway</p>
+                                <p>Nr. BSNL Office,</p>
+                                <p>Off S.G.Hightway,</p>
                                 <p>Ahmedabad-382481</p>
                             </li>
                             <li>

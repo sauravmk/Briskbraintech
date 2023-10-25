@@ -47,7 +47,7 @@
                                         @endforeach
                                     </td> --}}
                                     <td>
-                                        <a href="{{ route('blogsingle', ['id' => $post->id]) }}" class="btn btn-sm btn-info" target="_blank">
+                                        <a href="{{ route('blogsingle', ['slug' => $post->slug]) }}" class="btn btn-sm btn-info" target="_blank">
                                             <i class="fas fa-eye"></i> View
                                         </a>                                        
                                         <a href="{{ route('edit-post', $post->id) }}" class="btn btn-success">

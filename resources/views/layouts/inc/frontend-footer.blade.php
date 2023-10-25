@@ -12,8 +12,11 @@
                         <div class="connect-outer">
                             <h4>Contact Info</h4>
                             <ul class="contact-sec">
-                                <li><a href=""><i class="fa fa-mobile-phone"
-                                            aria-hidden="true"></i>{{ $setting->mobile }}</a></li>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-mobile-phone" aria-hidden="true"></i>+91 {{ $setting->mobile }}
+                                    </a>
+                                </li>                                
                                 <li><a href="mailto:hello@briskbraintech.com"><i class="fa fa-envelope mailicon"
                                             aria-hidden="true"></i>{{ $setting->email }}</a></li>
                                 <li class="address-li">
@@ -94,7 +97,7 @@
 <div class="whatsapp">
     <a href="https://web.whatsapp.com/send?phone=919428889935&amp;text=Hello%20BriskBrain"
         style="position: fixed; background: #fff; padding: 10px; border-radius: 100%; left: 20px; width: 55px; height: 55px; bottom: 20px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.25); z-index: 99; animation: bounce 2s infinite;">
-        <img src="https://www.briskbraintech.com/wp-content/uploads/2023/08/whatsapp.svg" alt="WhatsApp"
+        <img src="https://www.briskbraintech.com/wpbkup/wp-content/uploads/2023/08/whatsapp.svg" alt="WhatsApp"
             style="width: 100%; height: 100%;" />
     </a>
 </div>

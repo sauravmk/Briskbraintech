@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title', $title)
+@section('meta-title', $metaTitle)
+@section('meta-description', $metaDescription)
 @section('content')
 <section class="banner-section yii-banner">
     <div class="container">

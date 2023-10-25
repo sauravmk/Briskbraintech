@@ -40,7 +40,7 @@
         </div>
         <nav class="navbar main-header navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     @if ($setting)
                         <img src="{{  $setting->logo }}" class="img-logo" alt="">
                     @endif
@@ -51,7 +51,7 @@
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                            <a class="nav-link" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/about') }}">About</a>
@@ -95,7 +95,7 @@
         </nav>
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('submit.form') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header request-header">
@@ -104,27 +104,28 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Your Name</label>
-                                <input name="name" class="form-control" placeholder="" type="text">
+                                <label for="name">Your Name</label>
+                                <input name="name" id="name" class="form-control" placeholder="Your Name" type="text">
                             </div>
                             <div class="form-group">
-                                <label>Email Address</label>
-                                <input name="email" placeholder="" class="form-control" type="text">
+                                <label for="email">Email Address</label>
+                                <input name="email" id="email" placeholder="Email Address" class="form-control" type="text">
                             </div>
                             <div class="form-group">
-                                <label>Website</label>
-                                <input name="website" placeholder="" class="form-control" type="text">
+                                <label for="website">Website</label>
+                                <input name="website" id="website" placeholder="Website" class="form-control" type="text">
                             </div>
                             <div class="form-group">
-                                <label>How can we help you?</label>
-                                <textarea name="description" placeholder="" class="form-control"></textarea>
+                                <label for="description">How can we help you?</label>
+                                <textarea name="description" id="description" placeholder="Your Message" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer request-footer">
-                            <button type="submit" class="btn btn-save">Save</button>
+                            <button type="submit" class="btn btn-save">Submit</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        
     </header>

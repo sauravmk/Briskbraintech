@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-@section('title', $metaTitle)
+@section('title', $title)
+@section('meta-title', $metaTitle)
 @section('meta-description', $metaDescription)
 <section class="banner-section about-banner">
     <div class="container">
