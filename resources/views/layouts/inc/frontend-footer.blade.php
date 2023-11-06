@@ -77,7 +77,7 @@
                                 @foreach ($resentpost as $latestitem)
                                     <li>
                                         <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                        <a href="{{ url('blogsingle/' . $latestitem->id) }}">
+                                        <a href="{{ url('blogsingle/' . $latestitem->slug) }}">
                                             {{ $latestitem->name }}
                                         </a>
                                     </li>

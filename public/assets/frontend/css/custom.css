@@ -3,6 +3,19 @@
     font-size: 12px;
     padding-top: 7px;
 }
+.blog-title a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Default text color */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.blog-title a:hover {
+    color: #f29200; /* Change text color to #f29200 on hover */
+}
+
+.blog-title a:hover h5 {
+    color: #f29200 !important; /* Change h5 element's color to #f29200 on hover */
+}
 *,
 ::after,
 ::before {
@@ -234,6 +247,10 @@ section.technologies-section {
 }
 .service-provider-title {
     text-align: left;
+    margin-bottom: 15px;
+}
+.service-provider-title-thankyou {
+    text-align: center;
     margin-bottom: 15px;
 }
 .counter-section {
@@ -828,5 +845,13 @@ h4.title-graphic {
         float: left;
         padding: 8px 16px;
         text-decoration: none;
+    }
+    .rounded-img {
+        max-width: 100px; /* Set a maximum width for all images */
+        max-height: 100px; /* Set a maximum height for all images */
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+        object-fit: cover; /* To prevent image distortion */
     }
 }

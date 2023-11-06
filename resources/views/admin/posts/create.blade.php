@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container-fluid px-4">
+    <div class="px-4 container-fluid">
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="mt-4">{{ isset($post) ? 'Edit Post' : 'Add Post' }}</h1>
             <a href="{{ url('admin/posts') }}" class="btn btn-primary">View Posts</a>
@@ -157,6 +157,7 @@
             toolbar: 'undo redo | image | formatselect | bold italic underline | alignleft aligncenter alignright | numlist bullist',
             a_configuration_option: 400
         });
+       
     </script>
 
 @endsection

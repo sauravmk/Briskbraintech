@@ -6,7 +6,9 @@ use App\Models\Post;
 use App\Mail\QuoteRequest;
 use App\Models\PageMetadata;
 use Illuminate\Http\Request;
+use App\Mail\UserQuoteRequest;
 use App\Mail\ContactFormSubmitted;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -60,25 +62,44 @@ class HomeController extends Controller
     }
 
     public function submitForm(Request $request)
-    {   
+    {
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
             'website' => 'string|nullable',
             'description' => 'required|string',
         ]);       
-        Mail::to('manish.bhuvait@gmail.com')->send(new QuoteRequest($validatedData));
-
+        if (!empty($request->input('honeypot'))) {            
+            return redirect()->back()->with('error', 'Spam submission detected.');
+        }
+    
+        $currentDate = now()->format('d-m');
+        $subject = "Quote Request - $currentDate";
+    
+        Log::info('Subject to admin: ' . $subject);
+    
+        // Send the email to the admin
+        Mail::to('hello@briskbraintech.com')->send(new QuoteRequest($validatedData, $subject));
+    
+        // Send a copy of the email to the user's email address
+        Mail::to($validatedData['email'])->send(new UserQuoteRequest($validatedData));
+        
+        $routeName = Route::currentRouteName();
+        $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
+        $title = $pageMetadata ? $pageMetadata->title : "contact|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
+        $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
-        return view('frontend.index',compact('resentpost'));
+        return redirect('/');
     }
+    
     
     public function contact()
     {
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $title = $pageMetadata ? $pageMetadata->title : "contact|Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "Contact | Briksbrain";
         $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
 
@@ -91,18 +112,21 @@ class HomeController extends Controller
 
     public function sendEmail(Request $request)
     {
-        Mail::to('manish.bhuvait@gmail.com')->send(new ContactFormSubmitted($request->all()));
+        Mail::to('saurav.briskbrain@gmail.com')->send(new ContactFormSubmitted($request->all()));
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
-        $metaTitle = $pageMetadata ? $pageMetadata->title : "Briksbrain";
+        $title = $pageMetadata ? $pageMetadata->title : "contact|Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
 
         // Pass the meta data to the view
         view()->share('metaTitle', $metaTitle);
         view()->share('metaDescription', $metaDescription);
 
-        return view('contact', compact('metaTitle','resentpost', 'metaDescription'));
+        //return view('contact', compact('metaTitle','resentpost', 'title','metaDescription'));
+        return redirect('/thankyou');
+       // return redirect()->route('thankyou');
     }
 
     public function Yii()
@@ -243,6 +267,20 @@ class HomeController extends Controller
         view()->share('metaDescription', $metaDescription);
 
         return view('ruby-development', compact('metaTitle','title','resentpost', 'metaDescription'));
+    }
+
+    public function thankyou()
+    {
+        $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
+        $routeName = Route::currentRouteName();
+        $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
+        $title = $pageMetadata ? $pageMetadata->title : "Contact | Briksbrain";
+        $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
+        $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
+
+       
+
+        return view('thankyou', compact('metaTitle','resentpost','title', 'metaDescription')); // Assuming 'thankyou' is the name of your view file
     }
    
 }

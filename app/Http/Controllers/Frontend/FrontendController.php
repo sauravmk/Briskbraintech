@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\Review;
 use App\Models\PageMetadata;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,18 +14,19 @@ class FrontendController extends Controller
 {
   public function index()
   {
-    $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(5);
+    $resentpost = Post::orderBy('created_at', 'DESC')->where('status', 0)->take(5)->get();
     $routeName = Route::currentRouteName();
     $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
     $metaTitle = $pageMetadata ? $pageMetadata->title : "Top Web Development Services provider - BriskBrain Technologies";
     $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Top Web Development Service Provider Company, Laravel, Vue.js, Node.Js, Magento 2, CodeIgniter, Yii, Wordpress, Ruby onRails, ROR, Mobile app, IoT, Restful APIs, Payment Gateway, Web Design, Responsive Design, Top Web Development Company in Ahmedabad, Top Web Development Company in India";
-    return view('frontend.index',compact('resentpost','metaTitle','metaDescription'));
+    $reviews = Review::all();
+    return view('frontend.index',compact('resentpost','metaTitle','reviews','metaDescription'));
   }
 
   public function blog($month = null)
   {
-    $latestpost =  Post::orderBy('created_at', 'DESC')->get()->take(3);
-    $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(5);
+    $latestpost = Post::orderBy('created_at', 'DESC')->where('status', 0)->take(3)->get();
+    $resentpost = Post::orderBy('created_at', 'DESC')->where('status', 0)->take(5)->get();
     $posts = Post::orderBy('created_at', 'DESC')->where('status', 0); //0 for Show - 1 for Hide the blog
 
     if ($month) {
@@ -56,8 +58,8 @@ class FrontendController extends Controller
 
   public function blogsingle($slug)
   {
-      $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(5);
-      $latestposts =  Post::orderBy('created_at', 'DESC')->get()->take(3);
+      $resentpost = Post::orderBy('created_at', 'DESC')->where('status', 0)->take(5)->get();
+      $latestposts =  Post::orderBy('created_at', 'DESC')->where('status', 0)->take(3)->get();
       
       // Retrieve the blog post based on the slug
       $viewblogs = Post::where('slug', $slug)->first();

@@ -93,7 +93,7 @@ class CategoryController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/category');
+            $destinationPath = base_path('/images/category');
             $image->move($destinationPath, $name);
             return '/images/category/' . $name;
         }
@@ -112,6 +112,7 @@ class CategoryController extends Controller
             ->route('admin.category.index')
             ->with('success', 'Category deleted!');
     }
+    
     private function getValidationRules($forCreate = true)
     {
         $rules = [

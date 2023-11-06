@@ -181,6 +181,28 @@
                     </div>
                     <p>“5 out of 5 stars. Always responsive and professional.”</p>
                 </div>
+            </li>            
+            <li>
+                <div class="inner">
+                    <figure><img src="{{ asset('assets/frontend/img/profile_logo_22073579.jpg') }}" class="img-fluid rounded-circle" alt=""></figure>
+                    <span class="icon-quote"></span>
+                    <div class="client-detail">
+                        <h4>Testunity</h4>
+                        <span class="designation">USA</span> 
+                    </div>
+                    <p>“BriskBrain is too good in understanding the requirement. His technical skill is awesome. Want to hire you again.”</p>
+                </div>
+            </li>            
+            <li>
+                <div class="inner">
+                    <figure><img src="{{ asset('assets/frontend/img/unknown.png') }}" class="img-fluid rounded-circle" alt=""></figure>
+                    <span class="icon-quote"></span>
+                    <div class="client-detail">
+                        <h4>Mchibly</h4>
+                        <span class="designation">Brazil</span> 
+                    </div>
+                    <p>“briskbrain is a very good professional.. I recommend “</p>
+                </div>
             </li>
             <li>
                 <div class="inner">
@@ -195,13 +217,24 @@
             </li>
             <li>
                 <div class="inner">
-                    <figure><img src="{{ asset('assets/frontend/img/profile_logo_22073579.jpg') }}" class="img-fluid rounded-circle" alt=""></figure>
+                    <figure><img src="{{ asset('assets/frontend/img/unknown.png') }}" class="img-fluid rounded-circle" alt=""></figure>
                     <span class="icon-quote"></span>
                     <div class="client-detail">
-                        <h4>Testunity</h4>
-                        <span class="designation">USA</span> 
+                        <h4>Marlon M.</h4>
+                        <span class="designation">United States</span> 
                     </div>
-                    <p>“BriskBrain is too good in understanding the requirement. His technical skill is awesome. Want to hire you again.”</p>
+                    <p>“Great developer and easy to work with. Very fast resolution as well. I recommend this developer and will do other task with him since he is honest to work with!“</p>
+                </div>
+            </li>
+            <li>
+                <div class="inner">
+                    <figure><img src="{{ asset('assets/frontend/img/unknown.png') }}" class="img-fluid rounded-circle" alt=""></figure>
+                    <span class="icon-quote"></span>
+                    <div class="client-detail">
+                        <h4>Hazim N.</h4>
+                        <span class="designation">Malaysia</span> 
+                    </div>
+                    <p>“It was pleasant to work with Manish, communications were clear and work was delivered on time.“</p>
                 </div>
             </li>
             <li>
@@ -213,17 +246,6 @@
                         <span class="designation">Philippines</span> 
                     </div>
                     <p>“Very Professional =)”</p>
-                </div>
-            </li>
-            <li>
-                <div class="inner">
-                    <figure><img src="{{ asset('assets/frontend/img/unknown.png') }}" class="img-fluid rounded-circle" alt=""></figure>
-                    <span class="icon-quote"></span>
-                    <div class="client-detail">
-                        <h4>Mchibly</h4>
-                        <span class="designation">Brazil</span> 
-                    </div>
-                    <p>“briskbrain is a very good professional.. I recommend “</p>
                 </div>
             </li>
             <li>
@@ -259,6 +281,18 @@
                     <p>“Initially had confusions understanding our project, but through constant communication and trials he finally got it right, we had to spend a lot of time to make him understand but we are happy with the outcome. Will hire again, when he finally understands it all.”</p>
                 </div>
             </li>
+            <li>
+                <div class="inner">
+                    <figure><img src="{{ asset('assets/frontend/img/review-.jpeg') }}" style="max-width: 100px;" class="img-fluid rounded-circle" alt=""></figure>
+                    <span class="icon-quote"></span>
+                    <div class="client-detail">
+                        <h4>Marc S.</h4>
+                        <span class="designation">United States</span> 
+                    </div>
+                    <p>“Awesome job, kept cool head with the few bugs that the project developed.
+                        Worked clean code, professional look.”</p>
+                </div>
+            </li>
         </ul>
     </div>
 </section>
@@ -266,7 +300,7 @@
     <div class="container text-center">
         <h2 class="main-title">Latest from Our Lovely Work</h2>
         <div class="isotopeFilters">
-            <ul class="portfolio-filter clearfix">
+            <ul class="clearfix portfolio-filter">
                 <li class="active"><a href="#" data-filter="*">All</a></li>
                 <li><a href="#" data-filter=".application">CodeIgniter</a></li>
                 <li><a href="#" data-filter=".business">Laravel</a></li>
@@ -277,7 +311,7 @@
                 <li><a href="#" data-filter=".yiitwo">Yii/Yii2</a></li>
             </ul>
         </div>
-        <ul class="row portfolio clearfix isotopeContainer">
+        <ul class="clearfix row portfolio isotopeContainer">
             <li class="col-6 col-md-4 isotopeSelector business">
                 <div class="inner">  
                     <div class="overlay">
@@ -365,7 +399,7 @@
 </section>
 <section class="counter-section">
     <div class="container">
-        <h2 class="main-title text-center">Our Work History</h2>
+        <h2 class="text-center main-title">Our Work History</h2>
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <ul class="counter-listing">

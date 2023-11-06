@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 @section('title', $viewblogs->name . ' - BriskBrain Technologies')
 @section('meta-title', $viewblogs->meta_title . ' - BriskBrain Technologies')
 @section('meta-description', $viewblogs->meta_description . ' - BriskBrain Technologies')
@@ -26,9 +26,9 @@
                                 </figure>
                                 <p class="time">{{ $viewblogs->created_at->format('m/d/Y') }}</p>
                                 <h5>{{ $viewblogs->name }}</h5>
-                                <div class="overflow-auto p-3 bg-light" style="max-width: 1160px; max-height: 1000px">
+                                <div class="overflow-auto p-3 bg-light" style="max-width: 1160px; max-height: 1000px; overflow-y: scroll;">
                                     <p>{!! $viewblogs->description !!}</p>
-                                </div>
+                                </div>                                
                                 <div class="box">
                                     <ul class="blog-info">
                                         @if ($viewblogs->comments->count() == 0)
@@ -66,7 +66,7 @@
                                         <input type="hidden" name="post_id" value="{{ $viewblogs->id }}" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" class="btn btn-primary" value="Add Comment" />
+                                        <input type="submit" class="btn btn-primary comment-submit" value="Add Comment" />
                                     </div>
                                 </form>
                                 <div class="social-media-box socialbox">
@@ -96,18 +96,14 @@
                             @foreach ($latestposts as $latestitems)
                                 <div class="article-box">
                                     <div class="image-blog">
-                                        <div class="overlay">
-                                            <a class="galleryItem"
-                                                href="{{  $latestitems->image }}"><span
-                                                    class="icon-expand"></span></a>
-                                        </div>
-                                        <figure class="blog-pic"><img class="img-fluid img-blogimage"
-                                                src="{{ $latestitems->image }}"
-                                                alt="">
-                                        </figure>
+                                        <a href="{{ url('blogsingle/' . $latestitems->slug) }}">
+                                            <div class="overlay"></div>
+                                            <figure class="blog-pic"><img class="img-fluid" src="{{$latestitems->image}}" alt=""></figure>
+                                        </a>
                                     </div>
                                     <a class="blog-title" text-decoration="none"
-                                        href="{{ $latestitems->id }}">{{ $latestitems->name }}</a>
+                                        href="{{ url('blogsingle/' . $latestitems->slug) }}"><h6 style="margin-left: 4px; margin-top: 7px; font-size: medium;
+                                    ">{{ $latestitems->name }}</h6></a>
                                     <p class="time fa fa-calendar">{{ $latestitems->created_at->format('F d, Y') }}</p>
                                 </div>
                             @endforeach

@@ -119,6 +119,9 @@
                                 <label for="description">How can we help you?</label>
                                 <textarea name="description" id="description" placeholder="Your Message" class="form-control"></textarea>
                             </div>
+                            <div style="display: none;">
+                                <input type="text" name="honeypot" id="honeypot" value="">
+                            </div>
                         </div>
                         <div class="modal-footer request-footer">
                             <button type="submit" class="btn btn-save">Submit</button>

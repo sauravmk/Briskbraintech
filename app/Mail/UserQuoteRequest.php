@@ -9,42 +9,37 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class QuoteRequest extends Mailable
+class UserQuoteRequest extends Mailable
 {
     use Queueable, SerializesModels;
-
-    private $data;
-    public $subject;
 
     /**
      * Create a new message instance.
      */
-   public function __construct(array $data, $subject)
+    public function __construct(array $data)
     {
         $this->data = $data;
-        $this->subject = $subject;
     }
 
     public function build()
     {
-        return $this->subject($this->subject)
-                    ->view('emails.quote_request')
+        return $this->subject('Thank you for your quote request - BriskBrainTech')
+                    ->view('emails.user_quote_request')
                     ->with([
                         'name' => $this->data['name'],
                         'email' => $this->data['email'],
                         'website' => $this->data['website'],
                         'description' => $this->data['description'],
-                    ])
-                    ->replyTo($this->data['email']);
+                    ]);
     }
-
-
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
-        return new Envelope();
+        return new Envelope(
+            subject: 'Thank you for your quote request - BriskBrainTech',
+        );
     }
 
     /**
@@ -53,7 +48,7 @@ class QuoteRequest extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.quote_request',
+            view: 'emails.user_quote_request',
         );
     }
 

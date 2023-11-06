@@ -21,6 +21,7 @@ Route::get('/sitemap.xml', [SitemapController::class,'index'])->name('sitemap');
 
 Route::get('/about',[App\Http\Controllers\HomeController::class,'about'])->name('about');
 Route::get('/contact',[App\Http\Controllers\HomeController::class,'contact'])->name('contact');
+Route::get('/thankyou',[App\Http\Controllers\HomeController::class,'thankyou'])->name('thankyou');
 Route::post('/contact',[App\Http\Controllers\HomeController::class,'sendEmail'])->name('contact.submit');
 
 Route::get('/portfolio',[App\Http\Controllers\HomeController::class,'portfolio'])->name('portfolio');

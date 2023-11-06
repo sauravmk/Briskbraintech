@@ -13,7 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.bunny.net/css?family=Nunito">
     <link rel="icon" href="{{ asset('assets/frontend/img/favicon.png') }}" type="image/png">
-
+    
      <!-- Bootstrap and custom styles -->
     <link href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -24,7 +24,7 @@
     <link href="{{ asset('assets/frontend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/custom.css') }}" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfEgM4oAAAAALDWpJG5Q-2Sen21W0037I_zwUnp" async defer></script>
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {

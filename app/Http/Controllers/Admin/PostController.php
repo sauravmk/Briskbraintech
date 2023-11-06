@@ -50,14 +50,10 @@ class PostController extends Controller
 
         if ($imagePath !== null) {
             $post['image'] = $imagePath;
-        }
-
-        // $tags = explode(",", $request->tags);
-        Post::create($post);
-        //$post->tag($tags);
+        }        
+        Post::create($post);        
         return redirect('admin/add-post')->with('success', 'Category Added Successfully');
     }
-
 
 
     public function edit(Post $post)
@@ -133,7 +129,7 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/post');
+            $destinationPath = base_path('/images/post');
             $image->move($destinationPath, $name);
             return '/images/post/' . $name;
         }
