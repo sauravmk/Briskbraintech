@@ -24,6 +24,7 @@ Route::get('/contact',[App\Http\Controllers\HomeController::class,'contact'])->n
 Route::get('/thankyou',[App\Http\Controllers\HomeController::class,'thankyou'])->name('thankyou');
 Route::post('/contact',[App\Http\Controllers\HomeController::class,'sendEmail'])->name('contact.submit');
 
+
 Route::get('/portfolio',[App\Http\Controllers\HomeController::class,'portfolio'])->name('portfolio');
 Route::get('/service',[App\Http\Controllers\HomeController::class,'service'])->name('service');
 Route::get('/Yii',[App\Http\Controllers\HomeController::class,'Yii'])->name('Yii');
@@ -65,6 +66,9 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function (){
 
    //Route::resource('/page-metadata', PageMetadataController::class);
    Route::get('/page-metadata', [PageMetadataController::class, 'index'])->name('admin.page-metadata.index');
+   
+   Route::get('/page-metadata/get-metadata',  [PageMetadataController::class,'getMetadata']);
+
    Route::get('/page-metadata/create', [PageMetadataController::class, 'create'])->name('admin.page-metadata.create');
    Route::post('admin/page-metadata', [PageMetadataController::class, 'store'])->name('admin.page-metadata.store');
    Route::get('admin/page-metadata/{id}/edit', [PageMetadataController::class, 'edit'])

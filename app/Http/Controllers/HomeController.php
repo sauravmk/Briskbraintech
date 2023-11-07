@@ -90,7 +90,7 @@ class HomeController extends Controller
         $metaTitle = $pageMetadata ? $pageMetadata->meta_title : "Briksbrain";
         $metaDescription = $pageMetadata ? $pageMetadata->meta_description : "Learn more about our high-end and cost-effective website development services at BriskBrain.";
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
-        return redirect('/');
+        return redirect('/thankyou');
     }
     
     
@@ -109,10 +109,11 @@ class HomeController extends Controller
 
         return view('contact', compact('metaTitle','resentpost','title', 'metaDescription'));
     }
+    
 
     public function sendEmail(Request $request)
     {
-        Mail::to('saurav.briskbrain@gmail.com')->send(new ContactFormSubmitted($request->all()));
+        Mail::to('hello@briskbraintech.com')->send(new ContactFormSubmitted($request->all()));
         $resentpost = Post::orderBy('created_at', 'DESC')->get()->take(4);
         $routeName = Route::currentRouteName();
         $pageMetadata = PageMetadata::where('page_name', $routeName)->first();
@@ -280,7 +281,7 @@ class HomeController extends Controller
 
        
 
-        return view('thankyou', compact('metaTitle','resentpost','title', 'metaDescription')); // Assuming 'thankyou' is the name of your view file
+        return view('thankyou', compact('metaTitle','resentpost','title', 'metaDescription')); 
     }
    
 }

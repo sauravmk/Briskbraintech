@@ -21,13 +21,25 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-warning text-white mb-4">
+            <div class="card bg-warning text-dark mb-4">
                 <div class="card-body">
                     Total Posts
                      <h5>{{$posts}}</h5> 
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{url('admin/posts')}}">View Details</a>
+                    <a class="small text-dark stretched-link" href="{{url('admin/posts')}}">View Details</a>
+                    <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">
+                    Total Reviews
+                     <h5>{{$review}}</h5> 
+                 </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{{url('admin/reviews')}}">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

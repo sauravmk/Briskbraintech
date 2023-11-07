@@ -22,27 +22,62 @@ class PageMetadataController extends Controller
         $pageNames = $this->getPageNamesFromRoutes();
         return view('admin.page-metadata.create', compact('pageNames'));
     }
+    public function getMetadata(Request $request)
+    {
+        $pageName = $request->input('page_name');
 
+        // Try to find existing metadata by page name
+        $metadata = PageMetadata::where('page_name', $pageName)->first();
+
+        if ($metadata) {
+            // If metadata exists, return it as JSON
+            return response()->json(['metadata' => $metadata]);
+        } else {
+            // If metadata doesn't exist, return an empty JSON response
+            return response()->json(['metadata' => null]);
+        }
+    }
     public function store(Request $request)
     {
         // Validate the form data
         $request->validate([
-            'page_name' => 'required|unique:page_metadata',
+            'page_name' => 'required',
             'title' => 'nullable|string',
             'meta_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
         ]);
 
-        // Create a new page metadata record
-        PageMetadata::create([
-            'page_name' => $request->input('page_name'),
-            'title' => $request->input('title'),
-            'meta_title' => $request->input('meta_title'),
-            'meta_description' => $request->input('meta_description'),
-        ]);
+        $id = $request->input('id');
 
-        return redirect()->route('admin.page-metadata.index')
-            ->with('success', 'Page metadata created successfully');
+        if (empty($id)) {
+            // Create a new record
+            PageMetadata::create([
+                'page_name' => $request->input('page_name'),
+                'title' => $request->input('title'),
+                'meta_title' => $request->input('meta_title'),
+                'meta_description' => $request->input('meta_description'),
+            ]);
+
+            return redirect()->route('admin.page-metadata.create')
+                ->with('success', 'Page metadata created successfully');
+        } else {
+            // Update the existing record
+            $metadata = PageMetadata::find($id);
+
+            if (!$metadata) {
+                return redirect()->route('admin.page-metadata.create')
+                    ->with('error', 'Page metadata not found for updating');
+            }
+
+            $metadata->update([
+                'title' => $request->input('title'),
+                'meta_title' => $request->input('meta_title'),
+                'meta_description' => $request->input('meta_description'),
+            ]);
+
+            return redirect()->route('admin.page-metadata.create')
+                ->with('success', 'Page metadata updated successfully');
+        }
     }
 
     public function edit($id)
